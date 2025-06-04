@@ -1,8 +1,8 @@
-import Tasks from "./componets/Tasks";
-import AddTask from "./componets/AddTask";
 import { useEffect, useState } from "react";
+import AddTask from "./componets/AddTask";
+import Tasks from "./componets/Tasks";
 import { v4 } from "uuid";
-import { use } from "react";
+import { title } from "process";
 
 function App() {
   const [tasks, setTasks] = useState(JSON.parse(localStorage.getItem('tasks')) || []);
@@ -13,31 +13,17 @@ function App() {
 
   useEffect(() => {
     const fetchTasks = async () => {
-      // CHAMAR A API PARA BUSCAR AS TAREFAS
       const response = await fetch(
-        'https://jsonplaceholder.typicode.com/todos?_limit=7',
+        'https://jsonplaceholder.typicode.com/todos?_limit=9',
         {
         method: 'GET',
       }
     );
-
-
-    if (!response.ok) {
-      throw new Error('Erro ao buscar tarefas');
-    }
-
     const data = await response.json();
     setTasks(data);
     };
-    // SE QUISER< VOCÊ PODE CHAMAR A API AQUI
-    // fetchTasks();
-    // MAS É MELHOR CHAMAR A API NO COMPONENTE DID MOUNT
-    // PARA NÃO FICAR CHAMANDO A API TODA VEZ QUE O COMPONENTE FOR RENDERIZADO
-    // E PARA NÃO FICAR CHAMANDO A API TODA VEZ QUE O ESTADO FOR ATUALIZADO
-    // E PARA NÃO FICAR CHAMANDO A API TODA VEZ QUE O COMPONENTE FOR RENDERIZADO
+    fetchTasks();
   }, []);
-
-
 
   function onTaskClick(taskId) {
     const newTasks = tasks.map(task => {

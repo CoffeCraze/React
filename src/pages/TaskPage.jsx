@@ -1,5 +1,5 @@
 import { ChevronLastIcon, ChevronLeftIcon } from 'lucide-react';
-import React, { useState } from 'react';
+import React from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 function TaskPage() {
@@ -13,6 +13,7 @@ function TaskPage() {
             <div className='w-[500px] space-y-4'>
                 <div className='flex justify-center relative items-center mb-6'>
                     <button
+                        onClick={() => window.history.back()}
                         className='bg-slate-600 text-white p-2 rounded-md
                         hover:bg-slate-400 transition-colors duration-200 left-0 absolute'>
                         <ChevronLeftIcon />

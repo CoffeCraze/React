@@ -1,5 +1,4 @@
 import { useState } from "react";
-import Input from "./input";
 
 function AddTask({ onAddTaskSubmit }) {
   const [title, setTitle] = useState('');
@@ -9,13 +8,13 @@ function AddTask({ onAddTaskSubmit }) {
   return (
     <div className="space-y-4 p-6 bg-slate-200 rounded-md shadow-md flex flex-col ">
       <h2 className="text-2xl font-bold text-slate-700 text-center">Adicionar Tarefa</h2>
-      <Input
+      <input
         type="text"
         placeholder=" digite o titulo da tarefa"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
       />
-      <Input
+      <input
         type="text"
         placeholder=" digite a descrição da tarefa"
         value={description}
@@ -24,7 +23,7 @@ function AddTask({ onAddTaskSubmit }) {
 
       <button onClick={() => { 
       // Verifica se todos os campos estão preenchidos
-      if (!title.trim() || !description.trim()  || !priority.trim()) {
+      if (!title.trim() || !description.trim()) {
         // Exibe um alerta se algum campo estiver vazio
         alert("Por favor, preencha todos os campos.");
         return;
